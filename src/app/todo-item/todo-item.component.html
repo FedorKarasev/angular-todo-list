@@ -1,0 +1,27 @@
+<li
+  class="flex flex-row border rounded-lg p-3 cursor-pointer my-3 {{
+    todoItem.isComplete ? 'isComplete' : ''
+  }}"
+  (click)="toggleComplete(todoItem.id)"
+>
+  <div class="flex flex-col w-3/4">
+    <h3>{{ todoItem.title }}</h3>
+    <p class="text-xs text-gray-400">
+      {{ todoItem.description }}
+    </p>
+  </div>
+  <div class="flex flex-col justify-center w-1/4">
+    <button
+      class="flex items-center justify-center rounded-lg text-white bg-blue-700 px-3 py-2 h-1/2"
+      (click)="editTodo(todoItem.id)"
+    >
+      Edit task
+    </button>
+    <button
+      (click)="deleteTodo(todoItem.id)"
+      class="flex items-center justify-center rounded-lg text-white bg-red-700 px-3 py-2 h-1/2 mt-3"
+    >
+      Delete task
+    </button>
+  </div>
+</li>

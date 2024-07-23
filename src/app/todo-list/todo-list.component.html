@@ -1,0 +1,7 @@
+<ul>
+  @for (todoItem of todos; track todoItem.id) {
+  <app-todo-item [todoItem]="todoItem" />
+  } @empty {
+  <h3>You've no active tasks.</h3>
+  }
+</ul>

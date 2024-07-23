@@ -1,0 +1,9 @@
+.isComplete {
+  text-decoration: line-through;
+  color: #adadad;
+  background-color: #e6e6e6;
+}
+
+.isComplete button {
+  text-decoration: none;
+}
