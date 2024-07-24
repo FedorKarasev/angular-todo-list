@@ -1,0 +1,33 @@
+<form class="flex flex-row gap-3" [formGroup]="filtersForm">
+  <label for="statusFilter" class="w-1/5">Filters</label>
+  <select
+    name="statusFilter"
+    formControlName="statusFilter"
+    id="statusFilter"
+    class="w-2/5 px-3 py-1 border rounded-lg"
+    #statusFilter
+    (change)="
+      filterResults({
+        isComplete: statusFilter.value,
+        includes: textFilter.value
+      })
+    "
+  >
+    <option value="all" selected>All</option>
+    <option value="complete">Completed</option>
+    <option value="progress">In progress</option>
+  </select>
+  <input
+    class="w-2/5 px-3 py-1 border rounded-lg"
+    type="text"
+    placeholder="search..."
+    formControlName="textFilter"
+    #textFilter
+    (keypress)="
+      filterResults({
+        isComplete: statusFilter.value,
+        includes: textFilter.value
+      })
+    "
+  />
+</form>

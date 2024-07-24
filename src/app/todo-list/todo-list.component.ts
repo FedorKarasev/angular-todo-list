@@ -12,13 +12,16 @@ import { TodoItem } from '../interfaces/todo-item';
 })
 export class TodoListComponent {
   todos: TodoItem[] = [];
+  filteredTodos: TodoItem[] = [];
   todosService: TodosService = inject(TodosService);
 
   constructor() {
     this.todos = this.todosService.getAllTodos();
+    this.filteredTodos = this.todosService.getFilteredTodos();
   }
 
   ngDoCheck() {
     this.todos = this.todosService.getAllTodos();
+    this.filteredTodos = this.todosService.getFilteredTodos();
   }
 }

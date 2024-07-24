@@ -1,18 +1,41 @@
 import { Injectable } from '@angular/core';
 import { TodoItem } from '../interfaces/todo-item';
+import { Filters } from '../interfaces/filters';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TodosService {
   protected todoList: TodoItem[] = [];
+  protected filteredTodos: TodoItem[] = [];
 
   constructor() {
     this.todoList = JSON.parse(localStorage.getItem('todoList') ?? '[]');
+    this.filteredTodos = this.todoList;
   }
 
   getAllTodos(): TodoItem[] {
     return this.todoList;
+  }
+
+  getFilteredTodos(): TodoItem[] {
+    return this.filteredTodos;
+  }
+
+  setFilteredTodos(filters: Filters): void {
+    if (filters.isComplete === 'all') {
+      this.filteredTodos = this.todoList;
+    }
+    if (filters.isComplete === 'complete') {
+      this.filteredTodos = this.todoList.filter(
+        (todo) => todo.isComplete === true
+      );
+    }
+    if (filters.isComplete === 'progress') {
+      this.filteredTodos = this.todoList.filter(
+        (todo) => todo.isComplete === false
+      );
+    }
   }
 
   deleteTodo(id: number): void {
