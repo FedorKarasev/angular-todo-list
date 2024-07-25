@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Filters } from '../interfaces/filters';
 import { TodosService } from '../services/todos.service';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FiltersService } from '../services/filters.service';
 
 @Component({
   selector: 'app-filters',
@@ -12,6 +13,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 })
 export class FiltersComponent {
   todosService: TodosService = inject(TodosService);
+  filtersService: FiltersService = inject(FiltersService);
 
   filtersForm = new FormGroup({
     statusFilter: new FormControl('all'),
@@ -19,6 +21,6 @@ export class FiltersComponent {
   });
 
   filterResults(filters: Filters) {
-    this.todosService.setFilteredTodos(filters);
+    this.filtersService.setFilters(filters);
   }
 }

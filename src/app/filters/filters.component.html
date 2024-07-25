@@ -6,7 +6,7 @@
     id="statusFilter"
     class="w-2/5 px-3 py-1 border rounded-lg"
     #statusFilter
-    (change)="
+    (input)="
       filterResults({
         isComplete: statusFilter.value,
         includes: textFilter.value
