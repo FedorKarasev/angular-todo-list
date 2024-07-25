@@ -8,6 +8,7 @@ import { Filters } from '../interfaces/filters';
 })
 export class TodosFilterPipe implements PipeTransform {
   transform(value: TodoItem[], ...args: Filters[]): TodoItem[] {
+    console.log('select filter', value);
     const filteredTodos: TodoItem[] = [];
 
     for (let i = 0; i < value.length; i++) {

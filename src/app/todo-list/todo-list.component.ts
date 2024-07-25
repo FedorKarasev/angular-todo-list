@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, SimpleChanges } from '@angular/core';
 import { TodoItemComponent } from '../todo-item/todo-item.component';
 import { TodosService } from '../services/todos.service';
 import { TodoItem } from '../interfaces/todo-item';
@@ -25,7 +25,8 @@ export class TodoListComponent {
   }
 
   ngDoCheck() {
-    this.todos = this.todosService.getAllTodos();
     this.filters = this.filtersService.getFilters();
+    this.todos = this.todosService.getAllTodos();
+    console.log('this.todos', this.todos);
   }
 }

@@ -7,6 +7,8 @@ import {
 } from '@angular/forms';
 import { TodosService } from '../services/todos.service';
 import { TodoItem } from '../interfaces/todo-item';
+import { Filters } from '../interfaces/filters';
+import { FiltersService } from '../services/filters.service';
 
 @Component({
   selector: 'app-create-todo-form',
@@ -17,6 +19,10 @@ import { TodoItem } from '../interfaces/todo-item';
 })
 export class CreateTodoFormComponent {
   todosService: TodosService = inject(TodosService);
+  filterService: FiltersService = inject(FiltersService);
+
+  todos: TodoItem[] = this.todosService.getAllTodos();
+  filters: Filters = this.filterService.getFilters();
 
   applyForm = new FormGroup({
     title: new FormControl('', [Validators.required]),
@@ -34,6 +40,7 @@ export class CreateTodoFormComponent {
     };
 
     this.todosService.createTodo(toDo);
+    this.filterService.setFilters({ isComplete: 'all', includes: '' });
 
     this.applyForm.setValue({
       title: '',

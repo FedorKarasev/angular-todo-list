@@ -6,19 +6,13 @@ import { TodoItem } from '../interfaces/todo-item';
 })
 export class TodosService {
   protected todoList: TodoItem[] = [];
-  protected filteredTodos: TodoItem[] = [];
 
   constructor() {
     this.todoList = JSON.parse(localStorage.getItem('todoList') ?? '[]');
-    this.filteredTodos = this.todoList;
   }
 
   getAllTodos(): TodoItem[] {
     return this.todoList;
-  }
-
-  getFilteredTodos(): TodoItem[] {
-    return this.filteredTodos;
   }
 
   deleteTodo(id: number): void {
